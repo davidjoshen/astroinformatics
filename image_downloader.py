@@ -13,10 +13,10 @@ from astropy.io import fits
 ---------------------------------------------------------------------------------------------------
 '''
 
-data=pd.read_csv("galaxy_sur_main.csv",sep=',')
+data=pd.read_csv("source_database.csv",sep=',')
 pos=(2,)
 
-''' This is for NVSS
+''' This is for NVSS '''
 if not os.path.exists("NVSS2"):
     os.mkdir("NVSS2")
 if not os.path.exists("NVSSimages_final"):
@@ -26,6 +26,7 @@ if not os.path.exists("SUMSS2"):
     os.mkdir("SUMSS2")
 if not os.path.exists("SUMSSimages_final"):
     os.mkdir("SUMSSimages_final")
+'''
     
 # setup a query object for NVSS
 #nvss = "http://skyview.gsfc.nasa.gov/cgi-bin/vo/sia.pl?survey=nvss&"
@@ -36,9 +37,9 @@ query.size = 0.5                 # degrees
 query.format = 'image/fits'
 
 
-for n in range(0, 575):
+for n in range(0, 10):
 	try:
-          if (data['dec'][n]<-40.0):
+          if (data['dec'][n]>-40.0):
 		pos=(data['ra'][n],data['dec'][n])
 		name=data['NED_id'][n]
 		#fits_util.cut_out(RA,DEC,name)
